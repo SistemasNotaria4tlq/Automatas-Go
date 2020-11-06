@@ -8,16 +8,18 @@ import (
 	model "github.com/sistemasnotaria4tlq/automatas-go/src/model"
 )
 
-func (af model.AutomataFinito) Validate(cadena string) (bool, string) {
-	actual := af.init
-	ActualState := strconv.Itoa(af.init)
+type AFD model.AutomataFinito
+
+func (af *AFD) Validate(cadena string) (bool, string) {
+	actual := af.Init
+	ActualState := strconv.Itoa(af.Init)
 
 	for _, item := range cadena {
-		actual = af.mat[actual][strings.Index(af.texto, string(item))]
+		actual = af.Mat[actual][strings.Index(af.Texto, string(item))]
 		ActualState = fmt.Sprintf("%s/%d", ActualState, actual)
 	}
 
-	return Include(af.valid, actual), ActualState
+	return Include(af.Valid, actual), ActualState
 }
 
 func Valid(af model.Automata, cadena string) {
