@@ -4,9 +4,11 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+
+	models "github.com/sistemasnotaria4tlq/automatas-go/src/model"
 )
 
-func (a models.AFD) Validate(cadena string) (bool, string) {
+func (a models.AutomataFinito) Validate(cadena string) (bool, string) {
 	actual := a.init
 	ActualState := strconv.Itoa(a.init)
 
@@ -18,7 +20,7 @@ func (a models.AFD) Validate(cadena string) (bool, string) {
 	return Include(a.valid, actual), ActualState
 }
 
-func Valid(a Automata, cadena string) {
+func Valid(a models.Automata, cadena string) {
 	valid, ActualState := a.Validate(cadena)
 	if valid {
 		fmt.Println("ACCEPT!")

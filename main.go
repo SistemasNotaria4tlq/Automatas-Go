@@ -6,6 +6,8 @@ import (
 	"log"
 	"os"
 	"strconv"
+
+	"github.com/sistemasnotaria4tlq/automatas-go/src/helpers"
 )
 
 func main() {
@@ -21,15 +23,15 @@ func main() {
 
 	scanner := bufio.NewScanner(file)
 
-	cadena := ScanCadenas(scanner)
+	cadena := helpers.ScanCadenas(scanner)
 
-	texto := ScannerText(scanner)
+	texto := helpers.ScannerText(scanner)
 
 	init, _ := strconv.Atoi(ScanCadenas(scanner))
 
-	valid := scanFinalActualStates(scanner)
+	valid := helpers.scanFinalActualStates(scanner)
 
-	mat := ScanMat(scanner)
+	mat := helpers.ScanMat(scanner)
 
 	automata = &model.AFD{
 		texto,
