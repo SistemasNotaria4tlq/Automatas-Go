@@ -5,23 +5,23 @@ import (
 	"strconv"
 	"strings"
 
-	models "github.com/sistemasnotaria4tlq/automatas-go/src/model"
+	model "github.com/sistemasnotaria4tlq/automatas-go/src/model"
 )
 
-func (a models.AutomataFinito) Validate(cadena string) (bool, string) {
-	actual := a.init
-	ActualState := strconv.Itoa(a.init)
+func (af model.AutomataFinito) Validate(cadena string) (bool, string) {
+	actual := af.init
+	ActualState := strconv.Itoa(af.init)
 
 	for _, item := range cadena {
-		actual = a.mat[actual][strings.Index(a.texto, string(item))]
+		actual = af.mat[actual][strings.Index(af.texto, string(item))]
 		ActualState = fmt.Sprintf("%s/%d", ActualState, actual)
 	}
 
-	return Include(a.valid, actual), ActualState
+	return Include(af.valid, actual), ActualState
 }
 
-func Valid(a models.Automata, cadena string) {
-	valid, ActualState := a.Validate(cadena)
+func Valid(af model.Automata, cadena string) {
+	valid, ActualState := af.Validate(cadena)
 	if valid {
 		fmt.Println("ACCEPT!")
 	} else {
@@ -31,8 +31,8 @@ func Valid(a models.Automata, cadena string) {
 	fmt.Println(ActualState)
 }
 func Include(s []int, e int) bool {
-	for _, a := range s {
-		if a == e {
+	for _, af := range s {
+		if af == e {
 			return true
 		}
 	}

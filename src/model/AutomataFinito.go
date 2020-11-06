@@ -1,4 +1,4 @@
-package models
+package model
 
 type AutomataFinito struct {
 	Texto string
